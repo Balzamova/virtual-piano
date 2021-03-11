@@ -32,6 +32,12 @@ const switchOnLetters = () => {
     });
 }
 
+const playAudio = (src) => {
+    const audio = new Audio();
+    audio.src = src;
+    audio.currentTime = 0;
+    audio.play();
+}
 
 const requestFullScreen = (element) => {
     var requestMethod = element.requestFullScreen
@@ -49,6 +55,22 @@ const requestFullScreen = (element) => {
     }
 }
 
+const addClassesForKeysOnMouse = (event) => {
+    if (event.target.classList.contains('piano-key')) {
+        pianoКeys.forEach((el) => {
+            if (el.classList.contains('piano-key-active')) {
+                el.classList.remove('piano-key-active');
+            }
+        });
+        event.target.classList.add('piano-key-active');
+    }
+
+    if (event.target.classList.contains('piano-key')) {
+        const note = event.target.dataset.note;
+        const src = `assets/audio/${note}.mp3`;
+        playAudio(src);
+    }
+}
 
 btnNotes.addEventListener('click', switchOnNotes);
 
@@ -60,4 +82,25 @@ fullScreenBtn.addEventListener('click', () => {
 
 fullScreenBtn.addEventListener('click', () => {
     if (document.fullscreenElement) document.exitFullscreen();
+});
+
+piano.addEventListener('mousedown', (event) => {
+    clickPianoKey = true;
+
+    addClassesForKeysOnMouse(event);
+});
+
+window.addEventListener('mouseup', (event) => {
+    clickPianoKey = false;
+
+    if (event.target.classList.contains('piano-key')) {
+        pianoКeys.forEach((el) => {
+            el.classList.remove('piano-key-active');
+        });
+    }
+})
+
+piano.addEventListener('mouseover', (event) => {
+    if (!clickPianoKey) return;
+    addClassesForKeysOnMouse(event);
 });
