@@ -72,6 +72,7 @@ const addClassesForKeysOnMouse = (event) => {
     }
 }
 
+
 btnNotes.addEventListener('click', switchOnNotes);
 
 btnLetters.addEventListener('click', switchOnLetters);
@@ -103,4 +104,32 @@ window.addEventListener('mouseup', (event) => {
 piano.addEventListener('mouseover', (event) => {
     if (!clickPianoKey) return;
     addClassesForKeysOnMouse(event);
+});
+
+window.addEventListener('keydown', (event) => {    
+    let repeat = event.repeat; 
+
+    if (!repeat) {
+            const eventCode = event.code; // получаю KeyF
+            const eventLetter = eventCode.split('').slice(eventCode.length - 1).join(''); // получаю конкретную букву F,G,H...
+            const someKey = document.querySelector(`.piano-key[data-letter='${eventLetter}']`); //добралась до конкретной клавиши, которую надо анимировать
+        
+            const indexLetter = dataLetters.indexOf(eventLetter); // индекс кликнутой буквы в массиве   
+            const note = dataNotes[indexLetter];
+            const src = `assets/audio/${note}.mp3`;
+
+            if (dataLetters[indexLetter] !== eventLetter) return; //при клике на все клавиши клавиатуры (не из списка) не выдавать в консоле ошибку
+
+            someKey.classList.add('piano-key-active'); //активный стиль для клавиши, над которой выполняется событие 
+            
+            playAudio(src);
+    }
+});
+
+window.addEventListener('keyup', () => {
+    pianoКeys.forEach((el) => { //для всех снимаю класс active
+        el.classList.remove('piano-key-active');
+    });
+
+    clickPianoKey = false;
 });
