@@ -93,9 +93,7 @@ piano.addEventListener('mousedown', (event) => {
     addClassesForKeysOnMouse(event);
 });
 
-window.addEventListener('mouseup', (event) => {
-    
-
+window.addEventListener('mouseup', (event) => { 
     if (event.target.classList.contains('piano-key')) {
         pianoКeys.forEach((el) => {
             el.classList.remove('piano-key-active');
