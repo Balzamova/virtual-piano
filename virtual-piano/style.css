@@ -185,8 +185,8 @@ body {
 }
 
 .fullscreen {
-	position: fixed;
-	top: 120px;
+	position: absolute;
+	top: 20px;
 	right: 40px;
 	width: 40px;
 	height: 40px;
