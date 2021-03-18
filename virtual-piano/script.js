@@ -60,9 +60,12 @@ const addClassesForKeysOnMouse = (event) => {
         pianoКeys.forEach((el) => {
             if (el.classList.contains('piano-key-active')) {
                 el.classList.remove('piano-key-active');
+                el.classList.remove('piano-key-active-pseudo');
             }
         });
+
         event.target.classList.add('piano-key-active');
+        event.target.classList.add('piano-key-active-pseudo');
     }
 
     if (event.target.classList.contains('piano-key')) {
@@ -71,7 +74,6 @@ const addClassesForKeysOnMouse = (event) => {
         playAudio(src);
     }
 }
-
 
 btnNotes.addEventListener('click', switchOnNotes);
 
@@ -91,19 +93,28 @@ piano.addEventListener('mousedown', (event) => {
     addClassesForKeysOnMouse(event);
 });
 
-window.addEventListener('mouseup', (event) => {
-    clickPianoKey = false;
-
+window.addEventListener('mouseup', (event) => { 
     if (event.target.classList.contains('piano-key')) {
         pianoКeys.forEach((el) => {
             el.classList.remove('piano-key-active');
+            event.target.classList.remove('piano-key-active-pseudo');
         });
     }
+    clickPianoKey = false;
 })
 
 piano.addEventListener('mouseover', (event) => {
     if (!clickPianoKey) return;
     addClassesForKeysOnMouse(event);
+});
+
+piano.addEventListener('mouseout', (event) => {
+    if (event.target.classList.contains('piano-key')) {
+        pianoКeys.forEach((el) => {
+            el.classList.remove('piano-key-active');
+            event.target.classList.remove('piano-key-active-pseudo');
+        });
+    }
 });
 
 window.addEventListener('keydown', (event) => {    
