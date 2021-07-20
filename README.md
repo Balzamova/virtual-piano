@@ -1,6 +1,6 @@
 # JS development : virtual-piano
 
-## My ready page-proof: [link](https://balzamova.github.io/virtual-piano/virtual-piano/)
+## Project: [link](https://balzamova.github.io/virtual-piano/virtual-piano/)
 
 ### Used frameworks: 
 1. **HTML**
