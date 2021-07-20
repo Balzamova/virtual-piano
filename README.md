@@ -1,4 +1,4 @@
-# JS development : virtual-piano
+# Virtual-piano
 
 ## Project: [link](https://balzamova.github.io/virtual-piano/virtual-piano/)
 
