@@ -1,6 +1,6 @@
 # Virtual-piano
 
-## Project: [link](https://balzamova.github.io/virtual-piano/virtual-piano/)
+## Demo: [link](https://balzamova.github.io/virtual-piano/virtual-piano/)
 
 ### Used frameworks: 
 1. **HTML**
